@@ -1,4 +1,6 @@
 package clients;
+import clients.login.LoginModel;
+import clients.login.LoginView;
 import clients.backDoor.BackDoorController;
 import clients.backDoor.BackDoorModel;
 import clients.backDoor.BackDoorView;
@@ -22,6 +24,7 @@ import middle.MiddleFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
@@ -44,33 +47,53 @@ class Main
   /**
    * Starts test system (Non distributed)
    */
-  public void begin()
-  {
-    //DEBUG.set(true); /* Lots of debug info */
-    MiddleFactory mlf = new LocalMiddleFactory();  // Direct access
- 
-    startCustomerGUI_MVC( mlf );
-    if ( many ) 
-     startCustomerGUI_MVC( mlf );
-    startCashierGUI_MVC( mlf );
-    startCashierGUI_MVC( mlf );
-    startBackDoorGUI_MVC( mlf );
-    if ( many ) 
-      startPickGUI_MVC( mlf );
-    startPickGUI_MVC( mlf );
-    startDisplayGUI_MVC( mlf );
-    if ( many ) 
-      startDisplayGUI_MVC( mlf );
-    startCollectionGUI_MVC( mlf );
+  public void begin() {
+    MiddleFactory mlf = new LocalMiddleFactory(); // Direct access
+
+    // Create a LoginModel instance
+    LoginModel loginModel = new LoginModel();
+
+    // Create a LoginView instance with the LoginModel
+    LoginView loginView = new LoginView(loginModel);
+
+    // Show the login screen
+    loginView.setVisible(true);
+
+    // Wait for the login window to be closed
+    while (loginView.isVisible()) {
+      try {
+        Thread.sleep(100);  // Sleep to avoid busy-waiting
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+
+    // Proceed only if login was successful
+    if (loginModel.isLoginSuccessful()) {
+      // Other screens can be started here...
+      startCustomerGUI_MVC(mlf);
+      if (many)
+        startCustomerGUI_MVC(mlf);
+      startCashierGUI_MVC(mlf);
+      startCashierGUI_MVC(mlf);
+      startBackDoorGUI_MVC(mlf);
+      if (many)
+        startPickGUI_MVC(mlf);
+      startPickGUI_MVC(mlf);
+      startDisplayGUI_MVC(mlf);
+      if (many)
+        startDisplayGUI_MVC(mlf);
+      startCollectionGUI_MVC(mlf);
+    }
   }
-  
+
   public void startCustomerGUI_MVC(MiddleFactory mlf )
   {
     JFrame  window = new JFrame();
     window.setTitle( "Customer Client MVC");
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
+
     CustomerModel model      = new CustomerModel(mlf);
     CustomerView view        = new CustomerView( window, mlf, pos.width, pos.height );
     CustomerController cont  = new CustomerController( model, view );
@@ -90,7 +113,7 @@ class Main
     window.setTitle( "Cashier Client MVC");
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
+
     CashierModel model      = new CashierModel(mlf);
     CashierView view        = new CashierView( window, mlf, pos.width, pos.height );
     CashierController cont  = new CashierController( model, view );
@@ -108,7 +131,7 @@ class Main
     window.setTitle( "BackDoor Client MVC");
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
+
     BackDoorModel model      = new BackDoorModel(mlf);
     BackDoorView view        = new BackDoorView( window, mlf, pos.width, pos.height );
     BackDoorController cont  = new BackDoorController( model, view );
@@ -117,7 +140,7 @@ class Main
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
   }
-  
+
 
   public void startPickGUI_MVC(MiddleFactory mlf )
   {
@@ -126,7 +149,7 @@ class Main
     window.setTitle( "Pick Client MVC");
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
+
     PickModel model      = new PickModel(mlf);
     PickView view        = new PickView( window, mlf, pos.width, pos.height );
     PickController cont  = new PickController( model, view );
@@ -135,7 +158,7 @@ class Main
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
   }
-  
+
   public void startDisplayGUI_MVC(MiddleFactory mlf )
   {
     JFrame  window = new JFrame();
@@ -143,7 +166,7 @@ class Main
     window.setTitle( "Display Client MVC");
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
+
     DisplayModel model      = new DisplayModel(mlf);
     DisplayView view        = new DisplayView( window, mlf, pos.width, pos.height );
     DisplayController cont  = new DisplayController( model, view );
@@ -161,7 +184,7 @@ class Main
     window.setTitle( "Collect Client MVC");
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
+
     CollectModel model      = new CollectModel(mlf);
     CollectView view        = new CollectView( window, mlf, pos.width, pos.height );
     CollectController cont  = new CollectController( model, view );
