@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="CI553-CW1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/CI553-CW/setup.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/CI553-CW/catshop.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
