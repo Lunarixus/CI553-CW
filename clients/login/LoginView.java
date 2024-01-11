@@ -16,10 +16,6 @@ public class LoginView extends JFrame {
         this.loginModel = loginModel;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        initUI();
-    }
-
-    private void initUI() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3, 2));
 
@@ -46,6 +42,7 @@ public class LoginView extends JFrame {
     }
 
     private void handleLogin() {
+        // Change these details, these are defaults.
         String username = "username";
         String password = "password";
 
@@ -58,15 +55,5 @@ public class LoginView extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password. Try again.");
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                LoginModel loginModel = new LoginModel();
-                new LoginView(loginModel).setVisible(true);
-            }
-        });
     }
 }
