@@ -3,7 +3,6 @@ package clients.backDoor;
 
 /**
  * The BackDoor Controller
- * @author M A Smith (c) June 2014
  */
 
 public class BackDoorController

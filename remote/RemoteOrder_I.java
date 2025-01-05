@@ -20,9 +20,9 @@ public interface RemoteOrder_I extends Remote
          throws RemoteException, OrderException;
   public int  uniqueNumber() 
          throws RemoteException, OrderException;
-  public Basket getOrderToPick() 
+  public Basket getOrderToPack() 
          throws  RemoteException, OrderException;
-  public boolean informOrderPicked(int orderNum)
+  public boolean informOrderPacked(int orderNum)
          throws  RemoteException, OrderException;
   public boolean informOrderCollected(int orderNum)
          throws RemoteException, OrderException;

@@ -42,16 +42,16 @@ public class      R_Order
     return aOrder.uniqueNumber();
   }
   
-  public Basket getOrderToPick()
+  public Basket getOrderToPack()
          throws RemoteException, OrderException
   {
-      return aOrder.getOrderToPick();
+      return aOrder.getOrderToPack();
   }
   
-  public boolean informOrderPicked( int orderNum )
+  public boolean informOrderPacked( int orderNum )
          throws RemoteException, OrderException
   {
-     return aOrder.informOrderPicked(orderNum);
+     return aOrder.informOrderPacked(orderNum);
   }
   
   public boolean informOrderCollected( int orderNum )

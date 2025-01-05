@@ -13,8 +13,6 @@ import java.util.Observable;
 
 /**
  * Implements the Model of the customer client
- * @author  Mike Smith University of Brighton
- * @version 1.0
  */
 public class CustomerModel extends Observable
 {

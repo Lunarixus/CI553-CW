@@ -11,8 +11,6 @@ import javax.swing.*;
 
 /**
  * The standalone Customer Client
- * @author  Mike Smith University of Brighton
- * @version 2.0
  */
 public class CustomerClient
 {

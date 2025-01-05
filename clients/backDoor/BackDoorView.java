@@ -10,8 +10,6 @@ import java.util.Observer;
 
 /**
  * Implements the Customer view.
- * @author  Mike Smith University of Brighton
- * @version 1.0
  */
 
 public class BackDoorView implements Observer
@@ -23,6 +21,7 @@ public class BackDoorView implements Observer
   private static final int H = 300;       // Height of window pixels
   private static final int W = 400;       // Width  of window pixels
 
+  private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
   private final JTextField  theInputNo = new JTextField();
@@ -59,6 +58,10 @@ public class BackDoorView implements Observer
     
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
 
+    pageTitle.setBounds( 110, 0 , 270, 20 );       
+    pageTitle.setText( "Staff check and manage stock" );                        
+    cp.add( pageTitle );
+    
     theBtQuery.setBounds( 16, 25+60*0, 80, 40 );    // Buy button 
     theBtQuery.addActionListener(                   // Call back code
       e -> cont.doQuery( theInput.getText() ) );
@@ -103,12 +106,12 @@ public class BackDoorView implements Observer
   }
 
   /**
-   * Update the view
+   * Update the view, called by notifyObservers(theAction) in model,
    * @param modelC   The observed model
    * @param arg      Specific args 
    */
   @Override
-  public void update( Observable modelC, Object arg )
+  public void update( Observable modelC, Object arg )  
   {
     BackDoorModel model  = (BackDoorModel) modelC;
     String        message = (String) arg;

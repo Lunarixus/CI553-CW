@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 /**
  * Used to hold the following information about
- * a product: Product number, Description, Price and
- * Stock level.
+ * a product: Product number, Description, Price, Stock level.
  * @author  Mike Smith University of Brighton
  * @version 2.0
  */

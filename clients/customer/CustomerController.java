@@ -2,7 +2,6 @@ package clients.customer;
 
 /**
  * The Customer Controller
- * @author M A Smith (c) June 2014
  */
 
 public class CustomerController

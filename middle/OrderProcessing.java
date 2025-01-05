@@ -20,15 +20,17 @@ public interface OrderProcessing
   public int  uniqueNumber()                       // Cashier
          throws OrderException;
    
-  public Basket getOrderToPick()                   // Picker
+  public Basket getOrderToPack()                   // Packer
          throws OrderException;
  
-  public boolean informOrderPicked(int orderNum)   // Picker 
+  public boolean informOrderPacked(int orderNum)   // Packer 
          throws OrderException;
          
+  // not being used in this version
   public boolean informOrderCollected(int orderNum) // Collection
          throws OrderException;
-         
+   
+  // not being used in this version
   public Map<String,List<Integer>> getOrderState() // Display
          throws OrderException;
 }

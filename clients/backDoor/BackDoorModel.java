@@ -12,8 +12,6 @@ import java.util.Observable;
 
 /**
  * Implements the Model of the back door client
- * @author  Mike Smith University of Brighton
- * @version 1.0
  */
 public class BackDoorModel extends Observable
 {
@@ -140,7 +138,7 @@ public class BackDoorModel extends Observable
     String theAction = "";
     theBasket.clear();                        // Clear s. list
     theAction = "Enter Product Number";       // Set display
-    setChanged(); notifyObservers(theAction);
+    setChanged(); notifyObservers(theAction);  // inform the observer view that model changed
   }
   
   /**

@@ -9,8 +9,6 @@ import javax.swing.*;
 
 /**
  * The standalone Cashier Client.
- * @author  Mike Smith University of Brighton
- * @version 2.0
  */
 
 

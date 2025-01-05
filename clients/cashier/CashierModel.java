@@ -9,8 +9,6 @@ import java.util.Observable;
 
 /**
  * Implements the Model of the cashier client
- * @author  Mike Smith University of Brighton
- * @version 1.0
  */
 public class CashierModel extends Observable
 {
@@ -105,7 +103,7 @@ public class CashierModel extends Observable
     {
       if ( theState != State.checked )          // Not checked
       {                                         //  with customer
-        theAction = "Check if OK with customer first";
+        theAction = "please check its availablity";
       } else {
         boolean stockBought =                   // Buy
           theStock.buyStock(                    //  however
@@ -146,9 +144,9 @@ public class CashierModel extends Observable
         theOrder.newOrder( theBasket );       //  Process order
         theBasket = null;                     //  reset
       }                                       //
-      theAction = "Next customer";            // New Customer
+      theAction = "Start New Order";            // New order
       theState = State.process;               // All Done
-      theBasket = null;
+       theBasket = null;
     } catch( OrderException e )
     {
       DEBUG.error( "%s\n%s", 

@@ -8,8 +8,6 @@ import javax.swing.*;
 
 /**
  * The standalone BackDoor Client
- * @author  Mike Smith University of Brighton
- * @version 2.0
  */
 
 
@@ -42,7 +40,7 @@ public class BackDoorClient
     BackDoorController cont  = new BackDoorController( model, view );
     view.setController( cont );
 
-    model.addObserver( view );       // Add observer to the model
+    model.addObserver( view );       // Add observer to the model - view is observer, model is Observable
     window.setVisible(true);         // Display Screen
   }
 }

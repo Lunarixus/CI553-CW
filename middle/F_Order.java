@@ -82,14 +82,14 @@ public class F_Order implements OrderProcessing
    * @return An order to pick
    */
 
-  public synchronized Basket getOrderToPick()
+  public synchronized Basket getOrderToPack()
          throws OrderException
   {
-    DEBUG.trace("F_Order:getOrderTioPick()" );
+    DEBUG.trace("F_Order:getOrderTioPack()" );
     try
     {
       if ( aR_Order == null ) connect();
-      return aR_Order.getOrderToPick();
+      return aR_Order.getOrderToPack();
     } catch ( Exception e )
     {
       aR_Order = null;
@@ -103,14 +103,14 @@ public class F_Order implements OrderProcessing
    * the shop floor.
    */
 
-  public synchronized boolean informOrderPicked( int orderNum )
+  public synchronized boolean informOrderPacked( int orderNum )
          throws OrderException
   {
-    DEBUG.trace("F_Order:informOrderPicked()" );
+    DEBUG.trace("F_Order:informOrderPacked()" );
     try
     {
       if ( aR_Order == null ) connect();
-      return aR_Order.informOrderPicked(orderNum);
+      return aR_Order.informOrderPacked(orderNum);
     } catch ( Exception e )
     {
       aR_Order = null;

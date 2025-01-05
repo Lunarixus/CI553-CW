@@ -12,8 +12,7 @@ import java.util.Observer;
 
 
 /**
- * View of the model
- * @author  M A Smith (c) June 2014  
+ * View of the model 
  */
 public class CashierView implements Observer
 {
@@ -22,8 +21,9 @@ public class CashierView implements Observer
   
   private static final String CHECK  = "Check";
   private static final String BUY    = "Buy";
-  private static final String BOUGHT = "Bought";
+  private static final String BOUGHT = "Bought/Pay";
 
+  private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
   private final JTextArea   theOutput  = new JTextArea();
@@ -62,6 +62,10 @@ public class CashierView implements Observer
 
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
 
+    pageTitle.setBounds( 110, 0 , 270, 20 );       
+    pageTitle.setText( "Thank You for Shopping at MiniStrore" );                        
+    cp.add( pageTitle );  
+    
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check Button
     theBtCheck.addActionListener(                   // Call back code
       e -> cont.doCheck( theInput.getText() ) );
@@ -72,7 +76,7 @@ public class CashierView implements Observer
       e -> cont.doBuy() );
     cp.add( theBtBuy );                             //  Add to canvas
 
-    theBtBought.setBounds( 16, 25+60*3, 80, 40 );   // Clear Button
+    theBtBought.setBounds( 16, 25+60*3, 80, 40 );   // Bought Button
     theBtBought.addActionListener(                  // Call back code
       e -> cont.doBought() );
     cp.add( theBtBought );                          //  Add to canvas

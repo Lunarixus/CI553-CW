@@ -7,9 +7,8 @@ import java.util.Formatter;
 import java.util.Locale;
 
 /**
- * A collection of products from the CatShop.
- *  used to record the products that are to be/
- *   wished to be purchased.
+ * A collection of products,
+ * used to record the products that are to be wished to be purchased.
  * @author  Mike Smith University of Brighton
  * @version 2.2
  *

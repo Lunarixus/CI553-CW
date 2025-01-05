@@ -3,7 +3,6 @@ package clients.cashier;
 
 /**
  * The Cashier Controller
- * @author M A Smith (c) June 2014
  */
 
 public class CashierController

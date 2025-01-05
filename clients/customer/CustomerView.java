@@ -13,8 +13,6 @@ import java.util.Observer;
 
 /**
  * Implements the Customer view.
- * @author  Mike Smith University of Brighton
- * @version 1.0
  */
 
 public class CustomerView implements Observer
@@ -28,6 +26,7 @@ public class CustomerView implements Observer
   private static final int H = 300;       // Height of window pixels
   private static final int W = 400;       // Width  of window pixels
 
+  private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
   private final JTextArea   theOutput  = new JTextArea();
@@ -63,6 +62,10 @@ public class CustomerView implements Observer
     rootWindow.setLocation( x, y );
 
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
+    
+    pageTitle.setBounds( 110, 0 , 270, 20 );       
+    pageTitle.setText( "Search products" );                        
+    cp.add( pageTitle );
 
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check button
     theBtCheck.addActionListener(                   // Call back code
@@ -75,7 +78,7 @@ public class CustomerView implements Observer
     cp.add( theBtClear );                           //  Add to canvas
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
-    theAction.setText( "" );                        //  Blank
+    theAction.setText( " " );                       // blank
     cp.add( theAction );                            //  Add to canvas
 
     theInput.setBounds( 110, 50, 270, 40 );         // Product no area
