@@ -17,7 +17,6 @@ import middle.LocalMiddleFactory;
 import middle.MiddleFactory;
 import javax.swing.*;
 import java.awt.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Starts all the clients (user interface)  as a single application.
