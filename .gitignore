@@ -23,7 +23,7 @@
 hs_err_pid*
 
 # DataBase files
-catshop.db
+catshop.db/
 
 # Output files
-out
+out/
