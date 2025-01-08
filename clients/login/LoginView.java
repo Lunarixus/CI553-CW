@@ -3,12 +3,20 @@ package clients.login;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The {@code LoginView} class represents the login GUI for the application.
+ * It provides fields for username and password input, along with a login button.
+ */
 public class LoginView extends JFrame {
-    private JTextField usernameField;
-    private JPasswordField passwordField;
-    private JButton loginButton;
-    private LoginModel loginModel;
+    private final JTextField usernameField;
+    private final JPasswordField passwordField;
+    private final LoginModel loginModel;
 
+    /**
+     * Constructs a new {@code LoginView} with the specified login model.
+     *
+     * @param loginModel the {@link LoginModel} used to verify login credentials
+     */
     public LoginView(LoginModel loginModel) {
         super("Login");
         this.loginModel = loginModel;
@@ -19,7 +27,7 @@ public class LoginView extends JFrame {
 
         usernameField = new JTextField();
         passwordField = new JPasswordField();
-        loginButton = new JButton("Login");
+        JButton loginButton = new JButton("Login");
 
         panel.add(new JLabel("Username:"));
         panel.add(usernameField);
@@ -41,6 +49,13 @@ public class LoginView extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Handles the login process when the login button is clicked
+     * or the "Enter" key is pressed.
+     * <p>
+     * Compares user input with hardcoded credentials. If the credentials match,
+     * the login is marked as successful. Otherwise, an error message is displayed.
+     */
     private void handleLogin() {
         // Example hardcoded credentials
         String username = "username";
