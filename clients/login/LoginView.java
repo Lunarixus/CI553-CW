@@ -2,8 +2,6 @@ package clients.login;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginView extends JFrame {
     private JTextField usernameField;
@@ -17,7 +15,7 @@ public class LoginView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 2));
+        panel.setLayout(new GridLayout(4, 2));
 
         usernameField = new JTextField();
         passwordField = new JPasswordField();
@@ -27,14 +25,16 @@ public class LoginView extends JFrame {
         panel.add(usernameField);
         panel.add(new JLabel("Password:"));
         panel.add(passwordField);
+        panel.add(new JLabel(""));
+        panel.add(new JLabel("")); // Padding to the bottom right
+        panel.add(new JLabel(""));
         panel.add(loginButton);
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleLogin();
-            }
-        });
+        // Add action listener for the login button
+        loginButton.addActionListener(e -> handleLogin());
+
+        // Set the login button as the default button for the root pane
+        getRootPane().setDefaultButton(loginButton);
 
         add(panel);
         setSize(300, 150);
@@ -42,14 +42,19 @@ public class LoginView extends JFrame {
     }
 
     private void handleLogin() {
-        // Change these details, these are defaults.
+        // Example hardcoded credentials
         String username = "username";
         String password = "password";
 
-        String username_val = usernameField.getText();
-        String password_val = new String(passwordField.getPassword());
+        String usernameVal = usernameField.getText().trim();
+        String passwordVal = new String(passwordField.getPassword()).trim();
 
-        if (username.equals(username_val) && password.equals(password_val)) {
+        if (usernameVal.isEmpty() || passwordVal.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Both fields must be filled.");
+            return;
+        }
+
+        if (username.equals(usernameVal) && password.equals(passwordVal)) {
             loginModel.setLoginSuccessful(true);
             dispose(); // Close the login window on successful login
         } else {
