@@ -30,18 +30,22 @@ public class LoginView extends JFrame {
         usernameField = new JTextField();
         passwordField = new JPasswordField();
         JButton loginButton = new JButton("Login");
+        JButton customerButton = new JButton("Customer");
 
         panel.add(new JLabel("Username:"));
         panel.add(usernameField);
         panel.add(new JLabel("Password:"));
         panel.add(passwordField);
-        panel.add(new JLabel(""));
         panel.add(new JLabel("")); // Padding to the bottom right
         panel.add(new JLabel(""));
+        panel.add(customerButton);
         panel.add(loginButton);
 
         // Add action listener for the login button
         loginButton.addActionListener(e -> handleLogin());
+
+        // Add action listener for the customer button
+        customerButton.addActionListener(e -> handleCustomer());
 
         // Set the login button as the default button for the root pane
         getRootPane().setDefaultButton(loginButton);
@@ -77,6 +81,15 @@ public class LoginView extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password. Try again.");
         }
+    }
+
+    /**
+     * Handles the action for the "Customer" button click.
+     * Marks the login as successful for the customer and closes the login window.
+     */
+    private void handleCustomer() {
+        loginModel.setCustomerMode(true);
+        dispose(); // Close the login window
     }
 
     /**

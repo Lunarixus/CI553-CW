@@ -58,8 +58,10 @@ class Main
       }
     }
 
-    // Proceed only if login was successful
-    if (loginModel.isLoginSuccessful()) {
+    // Check the mode and proceed accordingly
+    if (loginModel.isCustomerMode()) {
+      startCustomerGUI_MVC(mlf);
+    } else if (loginModel.isLoginSuccessful()) {
       startCustomerGUI_MVC(mlf);
       startCashierGUI_MVC(mlf);
       startPackingGUI_MVC(mlf);
