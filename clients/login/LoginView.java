@@ -2,6 +2,8 @@ package clients.login;
 
 import javax.swing.*;
 import java.awt.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * The {@code LoginView} class represents the login GUI for the application.
@@ -59,7 +61,7 @@ public class LoginView extends JFrame {
     private void handleLogin() {
         // Example hardcoded credentials
         String username = "username";
-        String password = "password";
+        String passwordHash = "5f4dcc3b5aa765d61d8327deb882cf99"; // MD5 hash of "password"
 
         String usernameVal = usernameField.getText().trim();
         String passwordVal = new String(passwordField.getPassword()).trim();
@@ -69,11 +71,30 @@ public class LoginView extends JFrame {
             return;
         }
 
-        if (username.equals(usernameVal) && password.equals(passwordVal)) {
+        if (username.equals(usernameVal) && hashPassword(passwordVal).equals(passwordHash)) {
             loginModel.setLoginSuccessful(true);
             dispose(); // Close the login window on successful login
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password. Try again.");
+        }
+    }
+
+    /**
+     * Gets the MD5 hash of a given string.
+     * @param password the {@link String} input to be hashed.
+     * @return {@code String} MD5 hash of input.
+     */
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] digest = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("MD5 algorithm not available", e);
         }
     }
 }
