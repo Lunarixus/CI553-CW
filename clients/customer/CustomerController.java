@@ -37,6 +37,14 @@ public class CustomerController
     model.doClear();
   }
 
-  
+  /**
+   * Searches for a product by name
+   * @param text The search term to find
+   */
+  public void doCheckByName(String text) {
+    NameToNumber nn = new NameToNumber();
+    String productnum = nn.getNumberForName( text );
+    doCheck( productnum );
+  }
 }
 
