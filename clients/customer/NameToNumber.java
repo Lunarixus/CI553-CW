@@ -34,6 +34,9 @@ public class NameToNumber {
      */
     public String getNumberForName(String input) {
         for (Map.Entry<String, String> entry : nameToNumberMap.entrySet()) {
+            if(input == null) {
+                return "";
+            }
             if (input.contains(entry.getKey())) {
                 return entry.getValue();
             }
