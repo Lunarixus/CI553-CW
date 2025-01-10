@@ -14,8 +14,6 @@ import java.util.List;
  * @version 1.0
  */
 public class BetterBasket extends Basket implements Serializable {
-  private static final long serialVersionUID = 1L;
-
   /**
    * A list to hold the products in the basket.
    */
