@@ -100,6 +100,12 @@ public class BackDoorView implements Observer
     theSP.getViewport().add( theOutput );           //  In TextArea
     rootWindow.setVisible( true );                  // Make visible
     theInput.requestFocus();                        // Focus is here
+
+    JRootPane rootPane = rpc.getRootPane();       // Get the root pane
+    theInput.addActionListener(e -> cont.doQuery(theInput.getText())); // Do query on enter press
+    rootPane.setDefaultButton(new JButton() {{
+      addActionListener(e -> cont.doQuery(theInput.getText()));
+    }});
   }
   
   public void setController( BackDoorController c )

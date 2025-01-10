@@ -96,6 +96,12 @@ public class CashierView implements Observer
     theSP.getViewport().add( theOutput );           //  In TextArea
     rootWindow.setVisible( true );                  // Make visible
     theInput.requestFocus();                        // Focus is here
+
+    JRootPane rootPane = rpc.getRootPane();       // Get the root pane
+    theInput.addActionListener(e -> cont.doCheck(theInput.getText())); // Do check on enter press
+    rootPane.setDefaultButton(new JButton() {{
+      addActionListener(e -> cont.doCheck(theInput.getText()));
+    }});
   }
 
   /**
